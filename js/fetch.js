@@ -16,6 +16,18 @@
             alert("Please enter a valid email address");
             return;
         }
+        //check if the name and email is too short
+        if(name.length < 3 || email.length < 3)
+        {
+            alert("Please enter a valid name and email");
+            return;
+        }
+        //check if the message is too short and too long
+        if(message.length < 3 || message.length > 500)
+        {
+            alert("Please enter a valid message");
+            return;
+        }
         //check for the internet connection
         var isOnLine = navigator.onLine;
         if (isOnLine) {
@@ -61,9 +73,8 @@
             {
                 alert("Data sent successfully...");
                 //clear the form
-                name = "";
-                email = "";
-                message = "";
+                document.getElementById("name").value = "";
+                document.getElementById("email").value = "";
+                document.getElementById("message").value = "";
             }
         }	
-      
