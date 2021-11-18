@@ -7,25 +7,26 @@
         //check if the data is empty
         if(name == "" || email == "" || message == "")
         {
-            alert("Please fill in all the fields");
+            document.getElementById("result").innerHTML = "Please fill in all the fields";
             return;
         }
         //check email format
         if(!email.includes("@") || !email.includes("."))
         {
-            alert("Please enter a valid email address");
+            document.getElementById("result").innerHTML = "Please enter a valid email address";
             return;
         }
         //check if the name and email is too short
         if(name.length < 3 || email.length < 3)
         {
-            alert("Please enter a valid name and email");
+            document.getElementById("result").innerHTML = "Please enter a valid name and email";
             return;
         }
         //check if the message is too short and too long
         if(message.length < 3 || message.length > 500)
         {
-            alert("Please enter a valid message");
+            
+            document.getElementById("result").innerHTML = "Please enter a valid message";
             return;
         }
         //check for the internet connection
@@ -35,7 +36,7 @@
         } 
         else 
         {
-            alert("You have no internet connection, posting data will be aborted...");
+            document.getElementById("result").innerHTML = "You have no internet connection, posting data will be aborted.";
             return;
         }
         //try fetch
@@ -71,7 +72,7 @@
             }
             finally 
             {
-                alert("Data sent successfully...");
+                document.getElementById("result").innerHTML = "Data sent successfully.";
                 //clear the form
                 document.getElementById("name").value = "";
                 document.getElementById("email").value = "";
