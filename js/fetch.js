@@ -3,7 +3,8 @@
         var name = document.getElementById("name").value;
         var email = document.getElementById("email").value;
         var message = document.getElementById("message").value;
-        var data = "{" + "\"name\":\"" + name + "\",\"email\":\"" + email + "\",\"message\":\"" + message + "\"}";
+        var location = moment.tz.guess();
+        var data = "{" + "\"name\":\"" + name + "\",\"email\":\"" + email + "\",\"message\":\"" + message + "\",\"location\":\"" + location + "\"}";
         //check if the data is empty
         if(name == "" || email == "" || message == "")
         {
