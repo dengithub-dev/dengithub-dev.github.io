@@ -185,6 +185,11 @@ samp {
   font-size: 1em;
 }
 
+/*added 4/20/22 for the grid dive_into_menu*/
+#dive_into_menu {
+  text-align: center;
+}
+
 pre {
   margin-top: 0;
   margin-bottom: 1rem;
