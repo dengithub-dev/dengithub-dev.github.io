@@ -1,48 +1,53 @@
-    function post_data(){
-        var url = "https://script.google.com/macros/s/AKfycbxkJG_4aZ-zEXlHwxXfbXLKrek9VHeh_dXU-cMR85YcFAuDtgCs/exec";
-        var name = document.getElementById("name").value;
-        var email = document.getElementById("email").value;
-        var message = document.getElementById("message").value;
-        var location = moment.tz.guess();
-        var data = "{" + "\"name\":\"" + name + "\",\"email\":\"" + email + "\",\"message\":\"" + message + "\",\"location\":\"" + location + "\"}";
-        //check if the data is empty
+$("#sendMessageButton").on("click", () => {
+    let url = "https://script.google.com/macros/s/AKfycbyyrjKxTLmrgjtIpX4LcMbZlXVqQJRxfIZU_wley7FwFfKym3Q/exec";
+    let name = $("#name").val();
+    let email = $("#email").val();
+    let message = $("#message").val();
+    let location = moment.tz.guess();
+    let data = {
+        name: name,
+        email: email,
+        message: message,
+        location: location
+    };
+    
         if(name == "" || email == "" || message == "")
         {
-            document.getElementById("result").innerHTML = "Please fill in all the fields";
-            document.getElementById("result").style.color = "red";
+            $("#result").html("Please fill all the fields");
+            $("#result").css("color", "red");
             return;
         }
         //check email format
         if(!email.includes("@") || !email.includes("."))
         {
-            document.getElementById("result").innerHTML = "Please enter a valid email address";
-            document.getElementById("result").style.color = "red";
+            $("#result").html("Please enter a valid email address");
+            $("#result").css("color", "red");
             return;
         }
         //check if the name and email is too short
         if(name.length < 3 || email.length < 3)
         {
-            document.getElementById("result").innerHTML = "Please enter a valid name and email";
-            document.getElementById("result").style.color = "red";
+            $("#result").html("Please enter a valid name and email");
+            $("#result").css("color", "red");
             return;
         }
         //check if the message is too short and too long
         if(message.length < 3 || message.length > 500)
         {
             
-            document.getElementById("result").innerHTML = "Please enter a valid message";
-            document.getElementById("result").style.color = "red";
+            $("#result").html("Please enter a valid messages");
+            $("#result").css("color", "red");
             return;
         }
         //check for the internet connection
-        var isOnLine = navigator.onLine;
+        let isOnLine = navigator.onLine;
         if (isOnLine) {
             //do nothing, proceed to try fetch
         } 
         else 
         {
-            document.getElementById("result").innerHTML = "You have no internet connection, posting data will be aborted.";
-            document.getElementById("result").style.color = "red";
+            $("#result").html("Please check your internet connection");
+            $("#result").css("color", "red");
             return;
         }
         //try fetch
@@ -51,7 +56,7 @@
             fetch(url, {
                 method: 'POST',
                 mode: 'no-cors',
-                body: data,
+                body: JSON.stringify(data),
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
@@ -78,11 +83,16 @@
             }
             finally 
             {
-                document.getElementById("result").innerHTML = "Data sent successfully.";
-                document.getElementById("result").style.color = "green";
+                $("#result").html("Message sent successfully");
+                $("#result").css("color", "green");
                 //clear the form
-                document.getElementById("name").value = "";
-                document.getElementById("email").value = "";
-                document.getElementById("message").value = "";
+                $("#name").val("");
+                $("#email").val("");
+                $("#message").val("");
+                //set time out
+                setTimeout(function(){
+                    $("#result").html("");
+                }
+                , 6000);
             }
-        }	
+});
