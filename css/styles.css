@@ -192,13 +192,12 @@ samp {
 }
 /*add 9/04/22*/
 .list-inline-item {
-  display: inline-block;
   display: flex;
   align-items: center;
-  padding-top: 2rem;
-  padding-bottom: 3rem;
-  max-width: 100rem;
-  font-size: 2.2em;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+  max-width: 60rem;
+  font-size: 2em;
 }
 
 pre {
