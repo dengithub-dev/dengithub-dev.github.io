@@ -209,6 +209,11 @@ pre {
   -ms-overflow-style: scrollbar;
 }
 
+.pre-tech {
+  color: white;
+  font-size: .9rem;
+}
+
 figure {
   margin: 0 0 1rem;
 }
