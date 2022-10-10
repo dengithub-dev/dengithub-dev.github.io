@@ -5,12 +5,7 @@ $("#sendMessageButton").on("click", () => {
     let email = $("#email").val();
     let message = $("#message").val();
     let location = moment.tz.guess();
-    let data = {
-        name: name,
-        email: email,
-        message: message,
-        location: location
-    };
+    let data = { name, email, message,location };
     sendMessageButton.disabled = true;
 
         if(name == "" || email == "" || message == "")
@@ -99,9 +94,8 @@ $("#sendMessageButton").on("click", () => {
                 //set time out
                 setTimeout(function(){
                     $("#result").html("");
+                    sendMessageButton.disabled = false;
                 }
                 , 6000);
-
-                sendMessageButton.disabled = false;
             }
 });
