@@ -1,4 +1,5 @@
 $("#sendMessageButton").on("click", () => {
+    let sendMessageButton = document.getElementById("sendMessageButton");
     let url = "https://script.google.com/macros/s/AKfycbyyrjKxTLmrgjtIpX4LcMbZlXVqQJRxfIZU_wley7FwFfKym3Q/exec";
     let name = $("#name").val();
     let email = $("#email").val();
@@ -10,11 +11,13 @@ $("#sendMessageButton").on("click", () => {
         message: message,
         location: location
     };
-    
+    sendMessageButton.disabled = true;
+
         if(name == "" || email == "" || message == "")
         {
             $("#result").html("Please fill all the fields");
             $("#result").css("color", "red");
+            sendMessageButton.disabled = false;
             return;
         }
         //check email format
@@ -22,6 +25,7 @@ $("#sendMessageButton").on("click", () => {
         {
             $("#result").html("Please enter a valid email address");
             $("#result").css("color", "red");
+            sendMessageButton.disabled = false;
             return;
         }
         //check if the name and email is too short
@@ -29,6 +33,7 @@ $("#sendMessageButton").on("click", () => {
         {
             $("#result").html("Please enter a valid name and email");
             $("#result").css("color", "red");
+            sendMessageButton.disabled = false;
             return;
         }
         //check if the message is too short and too long
@@ -37,6 +42,7 @@ $("#sendMessageButton").on("click", () => {
             
             $("#result").html("Please enter a valid messages");
             $("#result").css("color", "red");
+            sendMessageButton.disabled = false;
             return;
         }
         //check for the internet connection
@@ -48,6 +54,7 @@ $("#sendMessageButton").on("click", () => {
         {
             $("#result").html("Please check your internet connection");
             $("#result").css("color", "red");
+            sendMessageButton.disabled = false;
             return;
         }
         //try fetch
@@ -94,5 +101,7 @@ $("#sendMessageButton").on("click", () => {
                     $("#result").html("");
                 }
                 , 6000);
+
+                sendMessageButton.disabled = false;
             }
 });
