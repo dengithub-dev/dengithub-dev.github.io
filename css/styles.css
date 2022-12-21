@@ -199,9 +199,11 @@ samp {
   max-width: 60rem;
   font-size: 1.6em;
 }
-.list-inline-item:hover {
+
+/*.list-inline-item:hover {
   font-size: 2.5em;
-}
+}*/
+
 pre {
   margin-top: 0;
   margin-bottom: 1rem;
