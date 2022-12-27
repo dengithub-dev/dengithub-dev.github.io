@@ -15,11 +15,9 @@ self.addEventListener("fetch", (e) => {
         caches.match(e.request)
         .then(() => {
             return fetch(e.request)
-            .catch(() => caches.match([
-                "index.html",
-                "css/styles.css",
-                "js/script.js"
-            ]))
+            .catch(() => caches.match(
+                "index.html"
+                ))
         })
     )
 })
