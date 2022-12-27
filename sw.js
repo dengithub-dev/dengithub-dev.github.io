@@ -1,7 +1,11 @@
 self.addEventListener("install", (e) => {
     e.waitUntil(
         caches.open("static").then(cache => {
-            return cache.add("offline.html")
+            return cache.addAll([
+                "index.html",
+                "css/styles.css",
+                "js/script.js"
+            ])
         })
     );
 });
@@ -11,7 +15,11 @@ self.addEventListener("fetch", (e) => {
         caches.match(e.request)
         .then(() => {
             return fetch(e.request)
-            .catch(() => caches.match('offline.html'))
+            .catch(() => caches.match([
+                "index.html",
+                "css/styles.css",
+                "js/script.js"
+            ]))
         })
     )
 })
