@@ -1,21 +1,26 @@
-self.addEventListener("install", (e) => {
+const cacheResources = [
+    "/",
+    "/assets/img/",
+    "/assets/css/styles.css",
+    "/js/fetch.js",
+    "/js/scripts.js",
+    "/index.html",
+    "/index.js",
+    "/manifest.json"
+  ]
+
+  self.addEventListener("install", (e) => {
     e.waitUntil(
         caches.open("static").then(cache => {
-            return cache.add(
-                "index.html"
-                )
+            return cache.addAll(cacheResources)
         })
     );
 });
 
-self.addEventListener("fetch", (e) => {
-    e.respondWith(
-        caches.match(e.request)
-        .then(() => {
-            return fetch(e.request)
-            .catch(() => caches.match(
-                "index.html"
-            ))
-        })
-    )
-})
+self.addEventListener("fetch", event => {
+    console.log('fetched');
+    event.respondWith(caches.match(event.request)
+    .then(cachedResponse => {
+      return cachedResponse || fetch(event.request)
+    }))
+  })
