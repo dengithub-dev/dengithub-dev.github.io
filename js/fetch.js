@@ -1,6 +1,6 @@
 $("#sendMessageButton").on("click", () => {
     let sendMessageButton = document.getElementById("sendMessageButton");
-    let url = "https://script.google.com/macros/s/AKfycbyyrjKxTLmrgjtIpX4LcMbZlXVqQJRxfIZU_wley7FwFfKym3Q/exec";
+    let url = "https://script.google.com/macros/s/AKfycbz6uUa1NThdMIfKnYyv5Yi-9R607bqYwwvxlrp3wMexhTDvH7ngWkKjLVqMqBxoSqN6/exec";
     let name = $("#name").val();
     let email = $("#email").val();
     let message = $("#message").val();
